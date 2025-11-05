@@ -1,0 +1,54 @@
+"Add a new course to my website titled ‘Full-Stack Web Development with Modern Tools and AI Agents’.
+
+Here are the full course details to include:
+
+Course Title:
+Full-Stack Web Development with Modern Tools and AI Agents
+
+Course Description:
+Create a comprehensive, step-by-step course that teaches learners how to build full-stack web applications using modern development tools and AI agents. The course focuses exclusively on essential, practical concepts — providing just the right amount of knowledge for students to confidently plan, build, and deploy their own web applications without encountering common errors or obstacles. Additionally, it includes modules on how to craft effective and precise prompts for AI development assistants such as Lovable and Replit, enabling faster and smoother web app development. By the end of the course, learners will be fully capable of writing high-quality prompts to create any web application with ease.
+
+Course Features:
+
+Beginner-friendly yet comprehensive structure.
+
+Real-world examples and hands-on projects.
+
+Step-by-step modules covering frontend, backend, and deployment.
+
+AI prompt-writing lessons for Lovable and Replit.
+
+Downloadable project templates and resources.
+
+Final capstone project: build and deploy a complete AI-assisted full-stack app.
+
+Website Integration Requirements:
+
+Display this course on the Courses or Learn page.
+
+Include a course card with:
+
+Title, short description, and “Enroll Now” button.
+
+Thumbnail image (use a modern coding/AI illustration).
+
+When a user clicks the course card, it should open a dedicated course detail page with:
+
+Full description (as above)
+
+Course outline or syllabus section
+
+“Start Learning” or “Join Course” CTA button
+
+Optional tags: #FullStack, #AI, #WebDevelopment, #PromptEngineering
+
+Design Style:
+
+Clean, modern UI with Tailwind CSS or similar styling.
+
+Consistent with existing website theme.
+
+Responsive layout optimized for mobile and desktop.
+
+Goal:
+Seamlessly add this course to my site’s course catalog so users can read details, enroll, and start learning immediately."
