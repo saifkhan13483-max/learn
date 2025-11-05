@@ -95,7 +95,7 @@ export default function Curriculum() {
           overview = items.join(', ');
         }
         
-        // Extract all topics from various sections
+        // Extract all topics and content sections
         const topics: string[] = [];
         
         // Extract "What You'll Learn" items
@@ -117,6 +117,19 @@ export default function Curriculum() {
         if (toolsMatch) {
           const toolItems = toolsMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- \*\*(.+?)\*\*: /, '$1 - ').trim());
           topics.push(...toolItems);
+        }
+
+        // Extract "Essential [Topic]" items
+        const essentialMatch = lessonContent.match(/\*\*Essential .+?:\*\*\n((?:- .+\n?)+)/);
+        if (essentialMatch) {
+          const essentialItems = essentialMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- /, '').trim());
+          topics.push(...essentialItems);
+        }
+
+        // Extract any code examples, practical exercises, or other sections
+        const practiceMatch = lessonContent.match(/\*\*(?:Practical Exercise|Practice Project|Hands-On Activity):\*\*\n((?:[\s\S](?!### |## |\*\*[A-Z]))+)/);
+        if (practiceMatch) {
+          topics.push(`Practice: ${practiceMatch[1].trim().substring(0, 100)}...`);
         }
 
         return { title: lessonTitle, duration: lessonDuration, topics, overview };
