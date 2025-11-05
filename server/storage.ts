@@ -32,17 +32,34 @@ export class MemStorage implements IStorage {
   private initializeCourseData() {
     courseModules.forEach((module, index) => {
       const id = index + 1;
-      this.modules.set(id, { ...module, id });
+      this.modules.set(id, { 
+        id,
+        title: module.title,
+        description: module.description || '',
+        duration: module.duration,
+        sortOrder: module.sortOrder,
+        lessonCount: module.lessonCount,
+        progress: 0,
+        locked: id > 1
+      });
     });
     
     courseLessons.forEach((lesson, index) => {
       const id = index + 1;
-      this.lessons.set(id, { ...lesson, id });
+      this.lessons.set(id, { 
+        id,
+        moduleId: lesson.moduleId,
+        title: lesson.title,
+        duration: lesson.duration,
+        type: lesson.type,
+        sortOrder: lesson.sortOrder,
+        completed: false
+      });
     });
     
     lessonContentData.forEach((content, index) => {
       const id = index + 1;
-      this.lessonsContent.set(id, { ...content, id });
+      this.lessonsContent.set(id, content);
     });
   }
 
