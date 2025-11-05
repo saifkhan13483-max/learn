@@ -1,8 +1,8 @@
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
-import { CourseOverview } from "@/components/CourseOverview";
 import { Testimonials } from "@/components/Testimonials";
 import { CTASection } from "@/components/CTASection";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -10,7 +10,16 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <HeroSection />
-        <CourseOverview />
+        <Card className="max-w-2xl w-full mx-auto my-8">
+          <CardHeader>
+            <CardTitle className="text-3xl">Welcome</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground">
+              No courses available at the moment.
+            </p>
+          </CardContent>
+        </Card>
         <Testimonials />
         <CTASection />
       </main>

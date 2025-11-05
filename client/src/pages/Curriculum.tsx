@@ -1,4 +1,3 @@
-
 import { Navbar } from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,9 +12,9 @@ interface Module {
   title: string;
   duration: string;
   description: string;
-  lessons: { 
-    title: string; 
-    duration: string; 
+  lessons: {
+    title: string;
+    duration: string;
     topics: string[];
     overview?: string;
   }[];
@@ -43,7 +42,7 @@ export default function Curriculum() {
       const moduleNumber = parseInt(match[1]);
       const moduleTitle = match[2];
       const duration = match[3];
-      
+
       // Find the content between this module and the next
       const startIndex = match.index!;
       const endIndex = index < matches.length - 1 ? matches[index + 1].index! : text.length;
@@ -54,9 +53,9 @@ export default function Curriculum() {
       const firstLessonIndex = moduleContent.indexOf('### Lesson');
       if (firstLessonIndex > 0) {
         const descSection = moduleContent.substring(0, firstLessonIndex);
-        const paragraphs = descSection.split('\n\n').filter(p => 
-          p.trim() && 
-          !p.startsWith('##') && 
+        const paragraphs = descSection.split('\n\n').filter(p =>
+          p.trim() &&
+          !p.startsWith('##') &&
           !p.startsWith('###') &&
           !p.startsWith('---')
         );
@@ -66,17 +65,17 @@ export default function Curriculum() {
       // Extract lessons
       const lessonRegex = /### Lesson \d+\.\d+: (.+?) \((\d+) hours?\)/g;
       const lessonMatches = [...moduleContent.matchAll(lessonRegex)];
-      
+
       const lessons = lessonMatches.map((lessonMatch, lessonIndex) => {
         const lessonTitle = lessonMatch[1];
         const lessonDuration = lessonMatch[2];
-        
+
         // Find content between this lesson and next
         const lessonStartIndex = lessonMatch.index!;
         const nextLessonIndex = moduleContent.indexOf('### Lesson', lessonStartIndex + 1);
         const nextModuleIndex = moduleContent.indexOf('## MODULE', lessonStartIndex + 1);
         let lessonEndIndex = moduleContent.length;
-        
+
         if (nextLessonIndex !== -1 && nextModuleIndex !== -1) {
           lessonEndIndex = Math.min(nextLessonIndex, nextModuleIndex);
         } else if (nextLessonIndex !== -1) {
@@ -84,9 +83,9 @@ export default function Curriculum() {
         } else if (nextModuleIndex !== -1) {
           lessonEndIndex = nextModuleIndex;
         }
-        
+
         const lessonContent = moduleContent.substring(lessonStartIndex, lessonEndIndex);
-        
+
         // Extract overview
         let overview = '';
         const overviewMatch = lessonContent.match(/\*\*What You'll Learn:\*\*\n((?:- .+\n?)+)/);
@@ -94,24 +93,24 @@ export default function Curriculum() {
           const items = overviewMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- /, '').trim());
           overview = items.join(', ');
         }
-        
+
         // Extract all topics and content sections
         const topics: string[] = [];
-        
+
         // Extract "What You'll Learn" items
         const learnMatch = lessonContent.match(/\*\*What You'll Learn:\*\*\n((?:- .+\n?)+)/);
         if (learnMatch) {
           const learnItems = learnMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- /, '').trim());
           topics.push(...learnItems);
         }
-        
+
         // Extract "Key Concepts" items
         const conceptsMatch = lessonContent.match(/\*\*Key Concepts:\*\*\n((?:- .+\n?)+)/);
         if (conceptsMatch) {
           const conceptItems = conceptsMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- /, '').trim());
           topics.push(...conceptItems);
         }
-        
+
         // Extract "Key Tools" items
         const toolsMatch = lessonContent.match(/\*\*Key Tools:\*\*\n((?:- .+\n?)+)/);
         if (toolsMatch) {
