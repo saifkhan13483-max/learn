@@ -69,55 +69,55 @@ export const courseModules: Omit<Module, 'id'>[] = [
 
 export const courseLessons: Omit<Lesson, 'id'>[] = [
   // Module 1 - Foundations
-  { moduleId: 1, slug: 'understanding-the-web', title: 'Understanding the Web', duration: '1 hour', type: 'video', sortOrder: 1, completed: false },
-  { moduleId: 1, slug: 'essential-development-tools', title: 'Essential Development Tools', duration: '2 hours', type: 'video', sortOrder: 2, completed: false },
-  { moduleId: 1, slug: 'html-fundamentals', title: 'HTML Fundamentals', duration: '2 hours', type: 'video', sortOrder: 3, completed: false },
-  { moduleId: 1, slug: 'css-styling-essentials', title: 'CSS Styling Essentials', duration: '3 hours', type: 'project', sortOrder: 4, completed: false },
+  { moduleId: 1, slug: 'understanding-the-web', title: 'Understanding the Web', duration: '1 hour', type: 'lesson', sortOrder: 1, completed: false },
+  { moduleId: 1, slug: 'essential-development-tools', title: 'Essential Development Tools', duration: '2 hours', type: 'lesson', sortOrder: 2, completed: false },
+  { moduleId: 1, slug: 'html-fundamentals', title: 'HTML Fundamentals', duration: '2 hours', type: 'lesson', sortOrder: 3, completed: false },
+  { moduleId: 1, slug: 'css-styling-essentials', title: 'CSS Styling Essentials', duration: '3 hours', type: 'lesson', sortOrder: 4, completed: false },
   
   // Module 2 - Frontend with React
-  { moduleId: 2, slug: 'javascript-essentials', title: 'JavaScript Essentials for React', duration: '2 hours', type: 'video', sortOrder: 1, completed: false },
-  { moduleId: 2, slug: 'react-fundamentals', title: 'React Fundamentals', duration: '3 hours', type: 'video', sortOrder: 2, completed: false },
-  { moduleId: 2, slug: 'advanced-react-patterns', title: 'Advanced React Patterns', duration: '3 hours', type: 'video', sortOrder: 3, completed: false },
-  { moduleId: 2, slug: 'ui-libraries-component-design', title: 'UI Libraries and Component Design', duration: '2 hours', type: 'video', sortOrder: 4, completed: false },
-  { moduleId: 2, slug: 'react-router-navigation', title: 'React Router and Navigation', duration: '2 hours', type: 'project', sortOrder: 5, completed: false },
+  { moduleId: 2, slug: 'javascript-essentials', title: 'JavaScript Essentials for React', duration: '2 hours', type: 'lesson', sortOrder: 1, completed: false },
+  { moduleId: 2, slug: 'react-fundamentals', title: 'React Fundamentals', duration: '3 hours', type: 'lesson', sortOrder: 2, completed: false },
+  { moduleId: 2, slug: 'advanced-react-patterns', title: 'Advanced React Patterns', duration: '3 hours', type: 'lesson', sortOrder: 3, completed: false },
+  { moduleId: 2, slug: 'ui-libraries-component-design', title: 'UI Libraries and Component Design', duration: '2 hours', type: 'lesson', sortOrder: 4, completed: false },
+  { moduleId: 2, slug: 'react-router-navigation', title: 'React Router and Navigation', duration: '2 hours', type: 'lesson', sortOrder: 5, completed: false },
   
   // Module 3 - Backend Development
-  { moduleId: 3, slug: 'nodejs-fundamentals', title: 'Node.js Fundamentals', duration: '2 hours', type: 'video', sortOrder: 1, completed: false },
-  { moduleId: 3, slug: 'express-framework', title: 'Express.js Framework', duration: '3 hours', type: 'video', sortOrder: 2, completed: false },
-  { moduleId: 3, slug: 'restful-api-design', title: 'RESTful API Design', duration: '4 hours', type: 'project', sortOrder: 3, completed: false },
-  { moduleId: 3, slug: 'database-postgresql', title: 'Database Integration with PostgreSQL', duration: '4 hours', type: 'video', sortOrder: 4, completed: false },
-  { moduleId: 3, slug: 'authentication-security', title: 'Authentication and Security', duration: '2 hours', type: 'video', sortOrder: 5, completed: false },
+  { moduleId: 3, slug: 'nodejs-fundamentals', title: 'Node.js Fundamentals', duration: '2 hours', type: 'lesson', sortOrder: 1, completed: false },
+  { moduleId: 3, slug: 'express-framework', title: 'Express.js Framework', duration: '3 hours', type: 'lesson', sortOrder: 2, completed: false },
+  { moduleId: 3, slug: 'restful-api-design', title: 'RESTful API Design', duration: '4 hours', type: 'lesson', sortOrder: 3, completed: false },
+  { moduleId: 3, slug: 'database-postgresql', title: 'Database Integration with PostgreSQL', duration: '4 hours', type: 'lesson', sortOrder: 4, completed: false },
+  { moduleId: 3, slug: 'authentication-security', title: 'Authentication and Security', duration: '2 hours', type: 'lesson', sortOrder: 5, completed: false },
   
   // Module 4 - Full-Stack Integration
-  { moduleId: 4, slug: 'connecting-frontend-backend', title: 'Connecting Frontend to Backend', duration: '2 hours', type: 'video', sortOrder: 1, completed: false },
-  { moduleId: 4, slug: 'forms-validation', title: 'Forms and Validation', duration: '2 hours', type: 'video', sortOrder: 2, completed: false },
-  { moduleId: 4, slug: 'realtime-websockets', title: 'Real-time Features with WebSockets', duration: '2 hours', type: 'project', sortOrder: 3, completed: false },
-  { moduleId: 4, slug: 'file-upload-storage', title: 'File Upload and Storage', duration: '2 hours', type: 'video', sortOrder: 4, completed: false },
+  { moduleId: 4, slug: 'connecting-frontend-backend', title: 'Connecting Frontend to Backend', duration: '2 hours', type: 'lesson', sortOrder: 1, completed: false },
+  { moduleId: 4, slug: 'forms-validation', title: 'Forms and Validation', duration: '2 hours', type: 'lesson', sortOrder: 2, completed: false },
+  { moduleId: 4, slug: 'realtime-websockets', title: 'Real-time Features with WebSockets', duration: '2 hours', type: 'lesson', sortOrder: 3, completed: false },
+  { moduleId: 4, slug: 'file-upload-storage', title: 'File Upload and Storage', duration: '2 hours', type: 'lesson', sortOrder: 4, completed: false },
   
   // Module 5 - AI-Powered Development
-  { moduleId: 5, slug: 'intro-ai-tools', title: 'Introduction to AI Development Tools', duration: '2 hours', type: 'video', sortOrder: 1, completed: false },
-  { moduleId: 5, slug: 'prompt-engineering-fundamentals', title: 'Fundamentals of Prompt Engineering', duration: '3 hours', type: 'video', sortOrder: 2, completed: false },
-  { moduleId: 5, slug: 'prompting-frontend', title: 'Prompting for Frontend Development', duration: '3 hours', type: 'project', sortOrder: 3, completed: false },
-  { moduleId: 5, slug: 'prompting-backend', title: 'Prompting for Backend Development', duration: '3 hours', type: 'project', sortOrder: 4, completed: false },
-  { moduleId: 5, slug: 'advanced-prompting', title: 'Advanced Prompting Techniques', duration: '1 hour', type: 'video', sortOrder: 5, completed: false },
+  { moduleId: 5, slug: 'intro-ai-tools', title: 'Introduction to AI Development Tools', duration: '2 hours', type: 'lesson', sortOrder: 1, completed: false },
+  { moduleId: 5, slug: 'prompt-engineering-fundamentals', title: 'Fundamentals of Prompt Engineering', duration: '3 hours', type: 'lesson', sortOrder: 2, completed: false },
+  { moduleId: 5, slug: 'prompting-frontend', title: 'Prompting for Frontend Development', duration: '3 hours', type: 'lesson', sortOrder: 3, completed: false },
+  { moduleId: 5, slug: 'prompting-backend', title: 'Prompting for Backend Development', duration: '3 hours', type: 'lesson', sortOrder: 4, completed: false },
+  { moduleId: 5, slug: 'advanced-prompting', title: 'Advanced Prompting Techniques', duration: '1 hour', type: 'lesson', sortOrder: 5, completed: false },
   
   // Module 6 - Deployment
-  { moduleId: 6, slug: 'preparing-production', title: 'Preparing for Production', duration: '1 hour', type: 'video', sortOrder: 1, completed: false },
-  { moduleId: 6, slug: 'deploying-replit', title: 'Deploying on Replit', duration: '2 hours', type: 'project', sortOrder: 2, completed: false },
-  { moduleId: 6, slug: 'database-management', title: 'Database Management', duration: '1 hour', type: 'video', sortOrder: 3, completed: false },
-  { moduleId: 6, slug: 'monitoring-maintenance', title: 'Monitoring and Maintenance', duration: '1 hour', type: 'video', sortOrder: 4, completed: false },
+  { moduleId: 6, slug: 'preparing-production', title: 'Preparing for Production', duration: '1 hour', type: 'lesson', sortOrder: 1, completed: false },
+  { moduleId: 6, slug: 'deploying-replit', title: 'Deploying on Replit', duration: '2 hours', type: 'lesson', sortOrder: 2, completed: false },
+  { moduleId: 6, slug: 'database-management', title: 'Database Management', duration: '1 hour', type: 'lesson', sortOrder: 3, completed: false },
+  { moduleId: 6, slug: 'monitoring-maintenance', title: 'Monitoring and Maintenance', duration: '1 hour', type: 'lesson', sortOrder: 4, completed: false },
   
   // Module 7 - Real-World Project
-  { moduleId: 7, slug: 'project-planning', title: 'Project Planning', duration: '2 hours', type: 'video', sortOrder: 1, completed: false },
-  { moduleId: 7, slug: 'building-with-ai', title: 'Building with AI Assistance', duration: '4 hours', type: 'project', sortOrder: 2, completed: false },
-  { moduleId: 7, slug: 'testing-debugging', title: 'Testing and Debugging', duration: '2 hours', type: 'video', sortOrder: 3, completed: false },
-  { moduleId: 7, slug: 'deployment-launch', title: 'Deployment and Launch', duration: '2 hours', type: 'project', sortOrder: 4, completed: false },
+  { moduleId: 7, slug: 'project-planning', title: 'Project Planning', duration: '2 hours', type: 'lesson', sortOrder: 1, completed: false },
+  { moduleId: 7, slug: 'building-with-ai', title: 'Building with AI Assistance', duration: '4 hours', type: 'lesson', sortOrder: 2, completed: false },
+  { moduleId: 7, slug: 'testing-debugging', title: 'Testing and Debugging', duration: '2 hours', type: 'lesson', sortOrder: 3, completed: false },
+  { moduleId: 7, slug: 'deployment-launch', title: 'Deployment and Launch', duration: '2 hours', type: 'lesson', sortOrder: 4, completed: false },
   
   // Module 8 - Advanced Topics
-  { moduleId: 8, slug: 'advanced-ai-integration', title: 'Advanced AI Integration', duration: '3 hours', type: 'video', sortOrder: 1, completed: false },
-  { moduleId: 8, slug: 'performance-optimization', title: 'Performance Optimization', duration: '2 hours', type: 'video', sortOrder: 2, completed: false },
-  { moduleId: 8, slug: 'advanced-patterns', title: 'Advanced Patterns', duration: '3 hours', type: 'video', sortOrder: 3, completed: false },
-  { moduleId: 8, slug: 'scaling-architecture', title: 'Scaling and Architecture', duration: '2 hours', type: 'project', sortOrder: 4, completed: false },
+  { moduleId: 8, slug: 'advanced-ai-integration', title: 'Advanced AI Integration', duration: '3 hours', type: 'lesson', sortOrder: 1, completed: false },
+  { moduleId: 8, slug: 'performance-optimization', title: 'Performance Optimization', duration: '2 hours', type: 'lesson', sortOrder: 2, completed: false },
+  { moduleId: 8, slug: 'advanced-patterns', title: 'Advanced Patterns', duration: '3 hours', type: 'lesson', sortOrder: 3, completed: false },
+  { moduleId: 8, slug: 'scaling-architecture', title: 'Scaling and Architecture', duration: '2 hours', type: 'lesson', sortOrder: 4, completed: false },
 ];
 
 export const lessonContentData: Omit<LessonContentData, 'id'>[] = [

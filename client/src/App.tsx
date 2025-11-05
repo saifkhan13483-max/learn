@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import Curriculum from "@/pages/Curriculum";
+import FullCurriculum from "@/pages/FullCurriculum";
 import AIPrompts from "@/pages/AIPrompts";
 import Dashboard from "@/pages/Dashboard";
 import Lesson from "@/pages/Lesson";
@@ -15,6 +16,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/curriculum" component={Curriculum} />
+      <Route path="/full-curriculum" component={FullCurriculum} />
       <Route path="/ai-prompts" component={AIPrompts} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/lesson/:id" component={Lesson} />

@@ -10,7 +10,7 @@ export function Navbar() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/curriculum", label: "Curriculum" },
-    { href: "/ai-prompts", label: "AI Prompts" },
+    { href: "/full-curriculum", label: "Full Course" },
     { href: "/dashboard", label: "Dashboard" },
   ];
 

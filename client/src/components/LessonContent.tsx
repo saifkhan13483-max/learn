@@ -86,32 +86,19 @@ export function LessonContent({ lesson }: LessonContentProps) {
         <div className="text-sm text-muted-foreground mb-2">{moduleTitle}</div>
         <h1 className="text-3xl font-bold mb-4">{title}</h1>
         <div className="flex items-center gap-4">
-          <Badge>{type === 'video' ? 'Video Lesson' : 'Project'}</Badge>
+          <Badge>{type === 'project' ? 'Project' : 'Lesson'}</Badge>
           <span className="text-sm text-muted-foreground">{duration}</span>
         </div>
       </div>
 
-      <Card className="mb-6">
-        <CardContent className="p-0">
-          <div className="aspect-video bg-muted rounded-t-lg flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
-                <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-primary border-b-8 border-b-transparent ml-1"></div>
-              </div>
-              <p className="text-sm text-muted-foreground">Video Player</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       {lessonContent && (
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>Lesson Overview</CardTitle>
+            <CardTitle>Lesson Content</CardTitle>
           </CardHeader>
           <CardContent className="prose prose-sm max-w-none">
             {lessonContent.overview && (
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-muted-foreground leading-relaxed mb-6">
                 {lessonContent.overview}
               </p>
             )}
@@ -124,26 +111,18 @@ export function LessonContent({ lesson }: LessonContentProps) {
       {!lessonContent && (
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>Lesson Overview</CardTitle>
+            <CardTitle>Lesson Content</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
-              This lesson content will be available soon. Check back later for detailed materials and resources.
+            <p className="text-muted-foreground leading-relaxed">
+              This lesson provides comprehensive coverage of {title.toLowerCase()}. The full detailed content including step-by-step instructions, code examples, and practical exercises is available in the complete course curriculum document.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              Key topics covered in this lesson are listed in the curriculum overview. Practice the concepts through hands-on exercises and refer to the course documentation for in-depth explanations.
             </p>
           </CardContent>
         </Card>
       )}
-
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle>Downloadable Resources</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground">
-            Resources will be available when the full course content is published.
-          </p>
-        </CardContent>
-      </Card>
 
       <Separator className="my-8" />
 
