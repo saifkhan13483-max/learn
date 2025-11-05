@@ -126,10 +126,24 @@ export default function Curriculum() {
           topics.push(...essentialItems);
         }
 
-        // Extract any code examples, practical exercises, or other sections
-        const practiceMatch = lessonContent.match(/\*\*(?:Practical Exercise|Practice Project|Hands-On Activity):\*\*\n((?:[\s\S](?!### |## |\*\*[A-Z]))+)/);
+        // Extract practice exercises
+        const practiceMatch = lessonContent.match(/\*\*(?:Practical Exercise|Practice Project|Hands-On Activity):\*\*\n((?:- .+\n?)+)/);
         if (practiceMatch) {
-          topics.push(`Practice: ${practiceMatch[1].trim().substring(0, 100)}...`);
+          const practiceItems = practiceMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- /, '').trim());
+          topics.push(...practiceItems.map(item => `Practice: ${item}`));
+        }
+
+        // Extract code examples section headers
+        const codeExampleMatch = lessonContent.match(/\*\*(.+?Concepts?|.+?Examples?|.+?Patterns?):\*\*/g);
+        if (codeExampleMatch) {
+          topics.push(...codeExampleMatch.map(m => m.replace(/\*\*/g, '')));
+        }
+
+        // Extract any numbered list items (common in hands-on activities)
+        const numberedMatch = lessonContent.match(/\d+\.\s+\*\*(.+?)\*\*/g);
+        if (numberedMatch) {
+          const numberedItems = numberedMatch.map(m => m.replace(/\d+\.\s+\*\*/, '').replace(/\*\*/, ''));
+          topics.push(...numberedItems);
         }
 
         return { title: lessonTitle, duration: lessonDuration, topics, overview };
@@ -235,18 +249,25 @@ export default function Curriculum() {
                           </div>
                         </AccordionTrigger>
                         <AccordionContent>
-                          <div className="pl-11 pt-2 space-y-3">
+                          <div className="pl-11 pt-2 space-y-4">
                             {lesson.overview && (
-                              <p className="text-sm text-muted-foreground">{lesson.overview}</p>
+                              <div className="bg-muted/50 p-3 rounded-md">
+                                <p className="text-sm text-muted-foreground leading-relaxed">{lesson.overview}</p>
+                              </div>
                             )}
                             {lesson.topics.length > 0 && (
                               <div>
-                                <h4 className="text-sm font-semibold mb-2">Topics Covered:</h4>
-                                <ul className="space-y-1">
+                                <h4 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                                  <Book className="h-4 w-4" />
+                                  What You'll Learn:
+                                </h4>
+                                <ul className="space-y-2 border-l-2 border-primary/20 pl-4">
                                   {lesson.topics.map((topic, topicIndex) => (
-                                    <li key={topicIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                      <ChevronRight className="h-4 w-4 flex-shrink-0 mt-0.5" />
-                                      <span>{topic}</span>
+                                    <li key={topicIndex} className="flex items-start gap-2 text-sm">
+                                      <ChevronRight className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" />
+                                      <span className={topic.startsWith('Practice:') ? 'font-medium text-primary' : 'text-muted-foreground'}>
+                                        {topic}
+                                      </span>
                                     </li>
                                   ))}
                                 </ul>
