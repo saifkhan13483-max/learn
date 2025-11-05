@@ -130,16 +130,158 @@ export const lessonContentData: Omit<LessonContentData, 'id'>[] = [
       sections: [
         {
           type: 'heading',
-          text: 'Key Concepts',
+          text: 'How the Internet and Web Work',
+        },
+        {
+          type: 'paragraph',
+          text: 'The internet is a global network of computers that communicate using standardized protocols. The World Wide Web is a service that runs on top of the internet, allowing us to access and share information through web pages.',
+        },
+        {
+          type: 'paragraph',
+          text: 'When you visit a website, your browser (the client) sends a request to a web server, which processes the request and sends back a response containing the web page content.',
+        },
+        {
+          type: 'heading',
+          text: 'Client-Server Architecture',
+        },
+        {
+          type: 'paragraph',
+          text: 'Web applications follow a client-server model:',
         },
         {
           type: 'list',
           items: [
-            'Request-response cycle',
-            'URLs and routing',
-            'Web browsers and servers',
-            'APIs (Application Programming Interfaces)',
+            'Client: Your web browser (Chrome, Firefox, Safari) that displays web pages and handles user interactions',
+            'Server: A computer that stores website files and responds to requests from clients',
+            'Communication: Clients and servers communicate using HTTP/HTTPS protocols',
+            'Separation of Concerns: Clients handle presentation and user interaction, servers handle data processing and storage',
           ],
+        },
+        {
+          type: 'heading',
+          text: 'HTTP/HTTPS Protocols',
+        },
+        {
+          type: 'paragraph',
+          text: 'HTTP (HyperText Transfer Protocol) is the foundation of data communication on the web. HTTPS is the secure version that encrypts data between client and server.',
+        },
+        {
+          type: 'list',
+          items: [
+            'HTTP Methods: GET (retrieve data), POST (send data), PUT (update data), DELETE (remove data)',
+            'Status Codes: 200 (OK), 404 (Not Found), 500 (Server Error), 201 (Created)',
+            'Headers: Metadata about the request/response (content type, authentication, caching)',
+            'HTTPS Encryption: Uses SSL/TLS to secure data transmission and prevent eavesdropping',
+          ],
+        },
+        {
+          type: 'heading',
+          text: 'Frontend vs Backend vs Full-Stack',
+        },
+        {
+          type: 'paragraph',
+          text: 'Web development is divided into three main areas:',
+        },
+        {
+          type: 'list',
+          items: [
+            'Frontend: Everything users see and interact with (HTML, CSS, JavaScript, React)',
+            'Backend: Server-side logic, databases, and APIs (Node.js, Express, PostgreSQL)',
+            'Full-Stack: Combination of both frontend and backend development',
+            'DevOps: Deployment, server management, and infrastructure (what you\'ll learn in Module 6)',
+          ],
+        },
+        {
+          type: 'heading',
+          text: 'Request-Response Cycle',
+        },
+        {
+          type: 'paragraph',
+          text: 'Every web interaction follows this cycle:',
+        },
+        {
+          type: 'list',
+          items: [
+            '1. User Action: You type a URL or click a link in your browser',
+            '2. DNS Lookup: Browser converts domain name to IP address',
+            '3. HTTP Request: Browser sends request to server with method, headers, and optional body',
+            '4. Server Processing: Server receives request, processes it, queries database if needed',
+            '5. HTTP Response: Server sends back response with status code, headers, and content',
+            '6. Rendering: Browser receives response and displays the web page',
+          ],
+        },
+        {
+          type: 'heading',
+          text: 'URLs and Routing',
+        },
+        {
+          type: 'paragraph',
+          text: 'URLs (Uniform Resource Locators) are addresses that identify resources on the web:',
+        },
+        {
+          type: 'code',
+          language: 'text',
+          text: 'https://www.example.com:443/courses/web-dev?sort=popular#modules\n\nProtocol: https://\nDomain: www.example.com\nPort: 443 (default for HTTPS)\nPath: /courses/web-dev\nQuery Parameters: ?sort=popular\nFragment: #modules',
+        },
+        {
+          type: 'list',
+          items: [
+            'Routing: Mapping URLs to specific pages or functions in your application',
+            'Dynamic Routes: URLs with parameters like /user/:id or /post/:slug',
+            'Query Strings: Additional parameters passed in URL like ?page=2&limit=10',
+          ],
+        },
+        {
+          type: 'heading',
+          text: 'Web Browsers and Servers',
+        },
+        {
+          type: 'paragraph',
+          text: 'Browsers are sophisticated applications that:',
+        },
+        {
+          type: 'list',
+          items: [
+            'Parse HTML, CSS, and JavaScript to render web pages',
+            'Execute JavaScript code in a secure sandbox environment',
+            'Store data locally using cookies, localStorage, and sessionStorage',
+            'Provide developer tools for debugging (we\'ll use these extensively)',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Servers are programs that:',
+        },
+        {
+          type: 'list',
+          items: [
+            'Listen for incoming HTTP requests on specific ports (usually 80 for HTTP, 443 for HTTPS)',
+            'Process requests and execute business logic',
+            'Connect to databases to store and retrieve data',
+            'Send responses back to clients with requested content',
+          ],
+        },
+        {
+          type: 'heading',
+          text: 'APIs (Application Programming Interfaces)',
+        },
+        {
+          type: 'paragraph',
+          text: 'APIs are interfaces that allow different software systems to communicate:',
+        },
+        {
+          type: 'list',
+          items: [
+            'REST APIs: Use HTTP methods and URLs to perform CRUD operations (Create, Read, Update, Delete)',
+            'Endpoints: Specific URLs that perform specific functions like /api/users or /api/posts',
+            'JSON Format: Most modern APIs send and receive data in JSON format',
+            'Authentication: APIs often require API keys or tokens to verify authorized access',
+          ],
+        },
+        {
+          type: 'code',
+          language: 'javascript',
+          text: '// Example API request\nfetch(\'https://api.example.com/users\')\n  .then(response => response.json())\n  .then(data => console.log(data))\n  .catch(error => console.error(\'Error:\', error));',
         },
         {
           type: 'heading',
@@ -147,7 +289,21 @@ export const lessonContentData: Omit<LessonContentData, 'id'>[] = [
         },
         {
           type: 'paragraph',
-          text: 'Open your browser\'s developer tools (F12) and examine the Network tab while loading a website. Observe the requests being made.',
+          text: 'Open your browser\'s developer tools (F12 or right-click > Inspect) and explore:',
+        },
+        {
+          type: 'list',
+          items: [
+            '1. Network Tab: Load a website and observe all HTTP requests being made',
+            '2. Request Details: Click on a request to see headers, response, timing',
+            '3. Console Tab: Try typing: document.location.href to see the current URL',
+            '4. Elements Tab: Inspect the HTML structure of any web page',
+          ],
+        },
+        {
+          type: 'callout',
+          calloutType: 'info',
+          text: 'Understanding these fundamentals is crucial. Every web application, no matter how complex, is built on these core concepts.',
         },
       ],
     },
