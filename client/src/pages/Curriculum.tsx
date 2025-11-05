@@ -146,6 +146,17 @@ export default function Curriculum() {
           topics.push(...numberedItems);
         }
 
+        // Extract all bold text topics (captures additional learning points)
+        const boldTopics = lessonContent.match(/\*\*([A-Z][^*]+):\*\*/g);
+        if (boldTopics) {
+          boldTopics.forEach(topic => {
+            const cleaned = topic.replace(/\*\*/g, '').replace(/:$/, '');
+            if (!topics.includes(cleaned) && cleaned.length > 3) {
+              topics.push(cleaned);
+            }
+          });
+        }
+
         return { title: lessonTitle, duration: lessonDuration, topics, overview };
       });
 
@@ -259,18 +270,29 @@ export default function Curriculum() {
                               <div>
                                 <h4 className="text-sm font-semibold mb-3 flex items-center gap-2">
                                   <Book className="h-4 w-4" />
-                                  What You'll Learn:
+                                  Topics Covered:
                                 </h4>
-                                <ul className="space-y-2 border-l-2 border-primary/20 pl-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                   {lesson.topics.map((topic, topicIndex) => (
-                                    <li key={topicIndex} className="flex items-start gap-2 text-sm">
+                                    <div 
+                                      key={topicIndex} 
+                                      className={`flex items-start gap-2 p-2 rounded-md ${
+                                        topic.startsWith('Practice:') 
+                                          ? 'bg-primary/5 border border-primary/20' 
+                                          : 'bg-muted/30'
+                                      }`}
+                                    >
                                       <ChevronRight className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" />
-                                      <span className={topic.startsWith('Practice:') ? 'font-medium text-primary' : 'text-muted-foreground'}>
+                                      <span className={`text-sm ${
+                                        topic.startsWith('Practice:') 
+                                          ? 'font-medium text-primary' 
+                                          : 'text-muted-foreground'
+                                      }`}>
                                         {topic}
                                       </span>
-                                    </li>
+                                    </div>
                                   ))}
-                                </ul>
+                                </div>
                               </div>
                             )}
                           </div>
