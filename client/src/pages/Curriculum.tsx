@@ -6,13 +6,19 @@ import { Button } from "@/components/ui/button";
 import { Book, Clock, Download, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 interface Module {
   number: number;
   title: string;
   duration: string;
   description: string;
-  lessons: { title: string; duration: string; topics: string[] }[];
+  lessons: { 
+    title: string; 
+    duration: string; 
+    topics: string[];
+    overview?: string;
+  }[];
 }
 
 export default function Curriculum() {
@@ -61,25 +67,33 @@ export default function Curriculum() {
       const lessonRegex = /### Lesson \d+\.\d+: (.+?) \((\d+) hours?\)/g;
       const lessonMatches = [...moduleContent.matchAll(lessonRegex)];
       
-      const lessons = lessonMatches.map(lessonMatch => {
+      const lessons = lessonMatches.map((lessonMatch, lessonIndex) => {
         const lessonTitle = lessonMatch[1];
         const lessonDuration = lessonMatch[2];
         
         // Find content between this lesson and next
         const lessonStartIndex = lessonMatch.index!;
-        const nextLessonMatch = moduleContent.indexOf('### Lesson', lessonStartIndex + 1);
-        const nextModuleMatch = moduleContent.indexOf('## MODULE', lessonStartIndex + 1);
+        const nextLessonIndex = moduleContent.indexOf('### Lesson', lessonStartIndex + 1);
+        const nextModuleIndex = moduleContent.indexOf('## MODULE', lessonStartIndex + 1);
         let lessonEndIndex = moduleContent.length;
         
-        if (nextLessonMatch !== -1 && nextModuleMatch !== -1) {
-          lessonEndIndex = Math.min(nextLessonMatch, nextModuleMatch);
-        } else if (nextLessonMatch !== -1) {
-          lessonEndIndex = nextLessonMatch;
-        } else if (nextModuleMatch !== -1) {
-          lessonEndIndex = nextModuleMatch;
+        if (nextLessonIndex !== -1 && nextModuleIndex !== -1) {
+          lessonEndIndex = Math.min(nextLessonIndex, nextModuleIndex);
+        } else if (nextLessonIndex !== -1) {
+          lessonEndIndex = nextLessonIndex;
+        } else if (nextModuleIndex !== -1) {
+          lessonEndIndex = nextModuleIndex;
         }
         
         const lessonContent = moduleContent.substring(lessonStartIndex, lessonEndIndex);
+        
+        // Extract overview
+        let overview = '';
+        const overviewMatch = lessonContent.match(/\*\*What You'll Learn:\*\*\n((?:- .+\n?)+)/);
+        if (overviewMatch) {
+          const items = overviewMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- /, '').trim());
+          overview = items.join(', ');
+        }
         
         // Extract all topics from various sections
         const topics: string[] = [];
@@ -105,7 +119,7 @@ export default function Curriculum() {
           topics.push(...toolItems);
         }
 
-        return { title: lessonTitle, duration: lessonDuration, topics };
+        return { title: lessonTitle, duration: lessonDuration, topics, overview };
       });
 
       parsedModules.push({
@@ -191,29 +205,45 @@ export default function Curriculum() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <h3 className="font-semibold mb-3">Lessons:</h3>
-                  <div className="space-y-4">
+                  <Accordion type="single" collapsible className="w-full">
                     {module.lessons.map((lesson, index) => (
-                      <div key={index} className="border-l-2 border-primary/20 pl-4 py-2">
-                        <div className="flex items-start justify-between gap-4 mb-2">
-                          <h4 className="font-medium text-sm">{lesson.title}</h4>
-                          <span className="text-xs text-muted-foreground whitespace-nowrap">
-                            {lesson.duration}h
-                          </span>
-                        </div>
-                        {lesson.topics.length > 0 && (
-                          <ul className="space-y-1 mt-2">
-                            {lesson.topics.map((topic, topicIndex) => (
-                              <li key={topicIndex} className="flex items-start gap-2 text-xs text-muted-foreground">
-                                <ChevronRight className="h-3 w-3 flex-shrink-0 mt-0.5" />
-                                <span>{topic}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
+                      <AccordionItem key={index} value={`lesson-${index}`}>
+                        <AccordionTrigger className="hover:no-underline">
+                          <div className="flex items-center justify-between w-full pr-4">
+                            <div className="flex items-center gap-3">
+                              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                                <span className="text-xs font-medium text-primary">{index + 1}</span>
+                              </div>
+                              <span className="font-medium text-left">{lesson.title}</span>
+                            </div>
+                            <span className="text-xs text-muted-foreground whitespace-nowrap ml-4">
+                              {lesson.duration}h
+                            </span>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <div className="pl-11 pt-2 space-y-3">
+                            {lesson.overview && (
+                              <p className="text-sm text-muted-foreground">{lesson.overview}</p>
+                            )}
+                            {lesson.topics.length > 0 && (
+                              <div>
+                                <h4 className="text-sm font-semibold mb-2">Topics Covered:</h4>
+                                <ul className="space-y-1">
+                                  {lesson.topics.map((topic, topicIndex) => (
+                                    <li key={topicIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                      <ChevronRight className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                                      <span>{topic}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
                     ))}
-                  </div>
+                  </Accordion>
                 </CardContent>
               </Card>
             ))}
