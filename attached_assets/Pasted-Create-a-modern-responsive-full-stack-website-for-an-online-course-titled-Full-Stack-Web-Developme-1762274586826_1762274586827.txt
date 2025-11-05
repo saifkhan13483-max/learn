@@ -1,0 +1,72 @@
+Create a modern, responsive full-stack website for an online course titled 'Full-Stack Web Development with Modern Tools and AI Agents.'
+
+The website should include the following features and pages:
+
+Home Page:
+
+A clean, professional hero section introducing the course (title, subtitle, and a call-to-action button: “Start Learning” or “Enroll Now”).
+
+Brief course overview and key outcomes (e.g., 'Learn to build and deploy full-stack apps with AI assistance').
+
+Testimonials or highlights of what learners will achieve.
+
+Course Curriculum Page:
+
+Step-by-step course structure showing each module or lesson.
+
+Each module should include a short description, duration, and key skills learned.
+
+Option to expand/collapse or preview lesson details.
+
+Lesson Page (for each module):
+
+Content area for videos, code snippets, and markdown text.
+
+Navigation buttons (“Previous Lesson,” “Next Lesson”).
+
+A section for downloadable resources (e.g., code files, PDF guides).
+
+AI Prompt Learning Section:
+
+Dedicated page that teaches how to write powerful, accurate prompts for AI tools like Lovable and Replit.
+
+Include interactive examples where users can practice prompt writing.
+
+User Dashboard:
+
+Displays progress tracking, completed modules, and course certificates.
+
+Option to resume learning from the last completed lesson.
+
+Admin Panel (optional):
+
+Add/edit/delete lessons and manage user progress.
+
+Upload videos, markdown lessons, and quizzes.
+
+Tech Stack:
+
+Frontend: React (Next.js preferred), Tailwind CSS for design.
+
+Backend: Node.js with Express or Next.js API routes.
+
+Database: MongoDB or PostgreSQL for storing users, lessons, and progress.
+
+AI Integration: API endpoints for Lovable/Replit-style AI prompt assistance.
+
+Deployment:
+
+Fully deployable on Vercel or Render, connected with a MongoDB Atlas or Supabase database.
+
+Include environment variables setup and deployment instructions.
+
+Design Requirements:
+
+Modern, minimal UI with soft shadows and rounded corners.
+
+Use consistent color palette (white, blue, and neutral tones).
+
+Mobile-responsive and optimized for performance.
+
+Goal:
+Deliver a complete, error-free, full-stack web application that allows users to learn step-by-step web development and AI prompt engineering, from beginner to advanced levels. The site should be intuitive, visually appealing, and easy to navigate for learners of all skill levels.
