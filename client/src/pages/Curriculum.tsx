@@ -43,9 +43,19 @@ export default function Curriculum() {
       const endIndex = index < matches.length - 1 ? matches[index + 1].index! : text.length;
       const moduleContent = text.substring(startIndex, endIndex);
 
-      // Extract description (first paragraph after module heading)
-      const descMatch = moduleContent.match(/\n\n(.+?)\n\n/);
-      const description = descMatch ? descMatch[1] : '';
+      // Extract description - look for text between module heading and first lesson
+      let description = '';
+      const firstLessonIndex = moduleContent.indexOf('### Lesson');
+      if (firstLessonIndex > 0) {
+        const descSection = moduleContent.substring(0, firstLessonIndex);
+        const paragraphs = descSection.split('\n\n').filter(p => 
+          p.trim() && 
+          !p.startsWith('##') && 
+          !p.startsWith('###') &&
+          !p.startsWith('---')
+        );
+        description = paragraphs.slice(1).join(' ').trim();
+      }
 
       // Extract lessons
       const lessonRegex = /### Lesson \d+\.\d+: (.+?) \((\d+) hours?\)/g;
@@ -58,14 +68,42 @@ export default function Curriculum() {
         // Find content between this lesson and next
         const lessonStartIndex = lessonMatch.index!;
         const nextLessonMatch = moduleContent.indexOf('### Lesson', lessonStartIndex + 1);
-        const lessonEndIndex = nextLessonMatch !== -1 ? nextLessonMatch : moduleContent.length;
+        const nextModuleMatch = moduleContent.indexOf('## MODULE', lessonStartIndex + 1);
+        let lessonEndIndex = moduleContent.length;
+        
+        if (nextLessonMatch !== -1 && nextModuleMatch !== -1) {
+          lessonEndIndex = Math.min(nextLessonMatch, nextModuleMatch);
+        } else if (nextLessonMatch !== -1) {
+          lessonEndIndex = nextLessonMatch;
+        } else if (nextModuleMatch !== -1) {
+          lessonEndIndex = nextModuleMatch;
+        }
+        
         const lessonContent = moduleContent.substring(lessonStartIndex, lessonEndIndex);
         
+        // Extract all topics from various sections
+        const topics: string[] = [];
+        
         // Extract "What You'll Learn" items
-        const topicsMatch = lessonContent.match(/\*\*What You'll Learn:\*\*\n((?:- .+\n?)+)/);
-        const topics = topicsMatch 
-          ? topicsMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- /, ''))
-          : [];
+        const learnMatch = lessonContent.match(/\*\*What You'll Learn:\*\*\n((?:- .+\n?)+)/);
+        if (learnMatch) {
+          const learnItems = learnMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- /, '').trim());
+          topics.push(...learnItems);
+        }
+        
+        // Extract "Key Concepts" items
+        const conceptsMatch = lessonContent.match(/\*\*Key Concepts:\*\*\n((?:- .+\n?)+)/);
+        if (conceptsMatch) {
+          const conceptItems = conceptsMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- /, '').trim());
+          topics.push(...conceptItems);
+        }
+        
+        // Extract "Key Tools" items
+        const toolsMatch = lessonContent.match(/\*\*Key Tools:\*\*\n((?:- .+\n?)+)/);
+        if (toolsMatch) {
+          const toolItems = toolsMatch[1].split('\n').filter(t => t.trim().startsWith('-')).map(t => t.replace(/^- \*\*(.+?)\*\*: /, '$1 - ').trim());
+          topics.push(...toolItems);
+        }
 
         return { title: lessonTitle, duration: lessonDuration, topics };
       });
