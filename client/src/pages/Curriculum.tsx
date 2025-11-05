@@ -2,7 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Book, Clock, Download, ChevronRight } from "lucide-react";
+import { Book, Clock, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -166,19 +166,11 @@ export default function Curriculum() {
       <main className="flex-1 py-16">
         <div className="container px-4 md:px-6 max-w-6xl mx-auto">
           <div className="mb-12">
-            <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
-              <div>
-                <h1 className="text-4xl font-bold mb-2">Full Course Curriculum</h1>
-                <p className="text-lg text-muted-foreground">
-                  Complete guide to full-stack web development with AI agents
-                </p>
-              </div>
-              <Button asChild variant="outline" className="gap-2">
-                <a href="/COURSE_CURRICULUM.md" download data-testid="button-download-curriculum">
-                  <Download className="h-4 w-4" />
-                  Download Full PDF
-                </a>
-              </Button>
+            <div className="mb-4">
+              <h1 className="text-4xl font-bold mb-2">Full Course Curriculum</h1>
+              <p className="text-lg text-muted-foreground">
+                Complete guide to full-stack web development with AI agents
+              </p>
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <span className="flex items-center gap-2">
